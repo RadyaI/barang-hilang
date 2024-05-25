@@ -7,7 +7,7 @@
 
 :root {
   --primary-color: #1a1a1a;
-  --secondary-color: #242424;
+  --secondary-color: #2f2f2f;
   --text-color: #42b883;
   --text-color-second: #e1e1e1;
 }

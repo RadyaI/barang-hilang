@@ -6,7 +6,7 @@
             </div>
             <div class="menu" v-if="state.width > 750">
                 <div class="list">Cari Barang</div>
-                <div class="list">Lapor</div>
+                <div class="list">Lapor Barang</div>
                 <div class="list">Cara Kerja?</div>
             </div>
             <div class="menu" v-else>

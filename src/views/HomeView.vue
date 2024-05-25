@@ -110,4 +110,23 @@ export default {
   background-color: var(--secondary-color);
   color: var(--text-color-second);
 }
+
+@media only screen and (max-width:700px) {
+  .wrapper .card h1 {
+    font-size: 2rem;
+  }
+
+  .wrapper .card p {
+    font-size: 1rem;
+  }
+
+  .wrapper .card {
+    width: 100%;
+  }
+
+  .wrapper .card .button-menu button {
+    font-size: 1rem;
+    padding: 7px 20px;
+  }
+}
 </style>

@@ -118,7 +118,7 @@ export default {
   text-align: center;
   font-size: 4rem;
   background-image: linear-gradient(to right, var(--text-color), #efefef);
-  -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   cursor: crosshair;
 }

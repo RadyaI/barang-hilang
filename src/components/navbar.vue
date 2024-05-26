@@ -22,7 +22,7 @@
                 <div class="navbar-menu">
                     <div class="list">Cari Barang</div>
                     <div class="list">Lapor</div>
-                    <div class="list">Cara Kerja?</div>
+                    <div class="list" @click="showCaraKerja">Cara Kerja?</div>
                 </div>
             </div>
         </div>
@@ -51,6 +51,7 @@ export default {
 
         const showCaraKerja = () => {
             emit('showCaraKerja', true)
+            closeModal()
         }
 
         const closeModal = () => {

@@ -14,21 +14,23 @@
       </div>
     </div>
 
-    <div class="cara-kerja animate__animated animate__fadeInDown" :class="{ 'animate__fadeOutDown': state.closeCaraKerja }"
-      v-if="state.showCaraKerja">
+    <div class="element"></div>
+
+    <div class="cara-kerja animate__animated animate__fadeInDown"
+      :class="{ 'animate__fadeOutDown': state.closeCaraKerja }" v-if="state.showCaraKerja">
       <div class="close"><i class="fa-solid fa-x icon" @click="closeCaraKerja"></i></div>
       <div class="wrapper">
+        <div class="card">
+          <div class="text">
+            <h2>Menemukan Barang?</h2>
+            <p>Jika kamu menemukan barang hilang kamu bisa lapor/upload barang tersebut di sini.</p>
+          </div>
+        </div>
         <div class="card">
           <div class="text">
             <h2>Kehilangan Barang?</h2>
             <p>Di website ini kamu bisa menemukan barang kamu di mana pun dengan mengingat ciri-ciri barang dan waktu
               hilang.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="text">
-            <h2>Menemukan Barang?</h2>
-            <p>Jika kamu menemukan barang hilang kamu bisa lapor/upload barang tersebut di sini.</p>
           </div>
         </div>
         <div class="card">
@@ -57,7 +59,7 @@ export default {
     const state = reactive({
       title: 'BARANG HILANG',
       showNavbarPopup: false,
-      showCaraKerja: false,
+      showCaraKerja: true,
       closeCaraKerja: false,
     })
 
@@ -170,6 +172,17 @@ export default {
   color: var(--secondary-color);
 }
 
+.element {
+  filter: blur(80px);
+  border-radius: 50%;
+  position: fixed;
+  bottom: 50px;
+  right: 150px;
+  background-color: var(--text-color);
+  width: 100px;
+  height: 100px;
+}
+
 .cara-kerja {
   /* border: 1px solid yellow; */
   position: fixed;
@@ -255,6 +268,33 @@ export default {
   .wrapper .card .button-menu button {
     font-size: 1rem;
     padding: 7px 20px;
+  }
+
+  .cara-kerja .wrapper {
+    /* border: 1px solid white; */
+    width: 90%;
+    height: 60%;
+    overflow-x: scroll;
+    display: flex;
+  }
+
+  .cara-kerja .wrapper::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+  }
+
+  .cara-kerja .wrapper::-webkit-scrollbar-thumb {
+    background: var(--text-color);
+    border-radius: 10px;
+  }
+
+  .cara-kerja .wrapper::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+  }
+
+  .cara-kerja .wrapper .card {
+    min-width: 80%;
+    height: 80%;
   }
 }
 </style>

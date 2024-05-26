@@ -120,7 +120,7 @@ export default {
   background-image: linear-gradient(to right, var(--text-color), #efefef);
   background-clip: text;
   color: transparent;
-  cursor: crosshair;
+  cursor: crosshair;  
 }
 
 
@@ -197,7 +197,7 @@ export default {
 }
 
 .cara-kerja .wrapper {
-  /* border: 1px solid white; */
+  /* border: 1px solid var(--text-color); */
   width: 90%;
   height: 50%;
 }
@@ -268,6 +268,7 @@ export default {
   .wrapper .card .button-menu button {
     font-size: 1rem;
     padding: 7px 20px;
+    width: fit-content;
   }
 
   .cara-kerja .wrapper {

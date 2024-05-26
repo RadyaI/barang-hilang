@@ -5,8 +5,8 @@
                 <div class="list">{{ state.title }}</div>
             </div>
             <div class="menu" v-if="state.width > 750">
-                <div class="list">Cari Barang</div>
-                <div class="list">Lapor Barang</div>
+                <div class="list">Register Barang</div>
+                <div class="list">Login</div>
                 <div class="cara-kerja" @click="showCaraKerja">Cara Kerja?</div>
             </div>
             <div class="menu" v-else>
@@ -20,8 +20,8 @@
             <div class="navbar-body">
                 <div class="navbar-close"><i @click="closeModal" class="fa-solid fa-x"></i></div>
                 <div class="navbar-menu">
-                    <div class="list">Cari Barang</div>
-                    <div class="list">Lapor</div>
+                    <div class="list">Register Barang</div>
+                    <div class="list">Login</div>
                     <div class="list" @click="showCaraKerja">Cara Kerja?</div>
                 </div>
             </div>
@@ -157,9 +157,10 @@ nav .menu .list:hover {
 }
 
 .navbar-modal .navbar-body {
+    border: 1px solid var(--text-color);
+    /* border: none; */
     width: 80%;
     height: 60vh;
-    border: none;
     background-color: var(--secondary-color);
     border-radius: 10px;
     display: flex;
@@ -186,7 +187,6 @@ nav .menu .list:hover {
 }
 
 .navbar-body .navbar-menu {
-    /* border: 1px solid white; */
     margin: 0 auto;
     margin-top: 20px;
     width: 90%;

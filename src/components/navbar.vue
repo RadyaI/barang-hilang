@@ -7,7 +7,7 @@
             <div class="menu" v-if="state.width > 750">
                 <div class="list">Cari Barang</div>
                 <div class="list">Lapor Barang</div>
-                <div class="list">Cara Kerja?</div>
+                <div class="cara-kerja" @click="showCaraKerja">Cara Kerja?</div>
             </div>
             <div class="menu" v-else>
                 <div class="list"><i class="icon fa-solid fa-bars" @click="navbarPopup"></i></div>
@@ -49,6 +49,10 @@ export default {
             emit('showNavbar', state.showNavbarPopup)
         }
 
+        const showCaraKerja = () => {
+            emit('showCaraKerja', true)
+        }
+
         const closeModal = () => {
             state.closeModal = true
             setTimeout(() => {
@@ -68,7 +72,8 @@ export default {
         return {
             state,
             navbarPopup,
-            closeModal
+            closeModal,
+            showCaraKerja
         }
     }
 } 
@@ -117,6 +122,22 @@ nav .menu {
 nav .menu .list {
     cursor: pointer;
     transition: color 0.3s;
+}
+
+nav .menu .cara-kerja {
+    background-color: var(--text-color);
+    padding: 6px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+nav .menu .cara-kerja:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
 }
 
 nav .menu .list:hover {

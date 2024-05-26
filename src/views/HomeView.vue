@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbarView :getTitle="state.title" @showNavbar="getNavbarStatus" />
+    <navbarView :getTitle="state.title" @showNavbar="getNavbarStatus" @showCaraKerja="getCaraKerja" />
     <div class="container">
       <div class="wrapper">
         <div class="card">
@@ -13,11 +13,40 @@
         </div>
       </div>
     </div>
+
+    <div class="cara-kerja animate__animated animate__fadeInDown" :class="{ 'animate__fadeOutDown': state.closeCaraKerja }"
+      v-if="state.showCaraKerja">
+      <div class="close"><i class="fa-solid fa-x icon" @click="closeCaraKerja"></i></div>
+      <div class="wrapper">
+        <div class="card">
+          <div class="text">
+            <h2>Kehilangan Barang?</h2>
+            <p>Di website ini kamu bisa menemukan barang kamu di mana pun dengan mengingat ciri-ciri barang dan waktu
+              hilang.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="text">
+            <h2>Menemukan Barang?</h2>
+            <p>Jika kamu menemukan barang hilang kamu bisa lapor/upload barang tersebut di sini.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="text">
+            <h2>Ingin Mengambil Barang?</h2>
+            <p>Barang yang hilang memiliki lokasi barang terakhir disimpan, kamu bisa berdiskusi dengan
+              penemu barang.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import navbarView from '@/components/navbar.vue'
+import 'animate.css'
 
 import { reactive } from 'vue';
 export default {
@@ -27,7 +56,9 @@ export default {
   setup() {
     const state = reactive({
       title: 'BARANG HILANG',
-      showNavbarPopup: false
+      showNavbarPopup: false,
+      showCaraKerja: false,
+      closeCaraKerja: false,
     })
 
     const getNavbarStatus = (data) => {
@@ -35,9 +66,23 @@ export default {
       console.log(data)
     }
 
+    const getCaraKerja = (data) => {
+      state.showCaraKerja = data
+    }
+
+    const closeCaraKerja = () => {
+      state.closeCaraKerja = true
+      setTimeout(() => {
+        state.closeCaraKerja = false
+        state.showCaraKerja = false
+      }, 1100);
+    }
+
     return {
       state,
-      getNavbarStatus
+      getNavbarStatus,
+      getCaraKerja,
+      closeCaraKerja
     }
   }
 }
@@ -95,7 +140,6 @@ export default {
 .wrapper .card .button-menu button {
   margin: 20px;
   padding: 5px 20px;
-  border: none;
   cursor: pointer;
   font-weight: 500;
   font-size: 1.1rem;
@@ -104,16 +148,100 @@ export default {
 
 .btn-cari {
   background-color: var(--text-color);
+  border: none;
+  transition: color 0.3s, background-color 0.3s, border 0.3s;
+}
+
+.btn-cari:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  /* border: 1px solid green; */
 }
 
 .btn-lapor {
   background-color: var(--secondary-color);
   color: var(--text-color-second);
+  border: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-lapor:hover {
+  background-color: var(--text-color);
+  color: var(--secondary-color);
+}
+
+.cara-kerja {
+  /* border: 1px solid yellow; */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cara-kerja .wrapper {
+  /* border: 1px solid white; */
+  width: 90%;
+  height: 50%;
+}
+
+.cara-kerja .close {
+  /* border: 1px solid red; */
+  color: white;
+  width: 90%;
+  padding-bottom: 15px;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: end;
+}
+
+.cara-kerja .close .icon {
+  margin-right: 38px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid var(--text-color);
+  cursor: pointer;
+}
+
+.cara-kerja .wrapper .card {
+  border: none;
+  border-radius: 20px;
+  margin: 20px;
+  width: 30%;
+  height: 99%;
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border 0.1s;
+}
+
+.cara-kerja .wrapper .card:hover {
+  border: 1px solid var(--text-color);
+}
+
+.cara-kerja .wrapper .card .text {
+  /* border: 1px solid white; */
+  width: 90%;
+  height: 90%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cara-kerja .wrapper .card .text h2 {
+  color: var(--text-color);
+  font-size: 2rem;
 }
 
 @media only screen and (max-width:700px) {
   .wrapper .card h1 {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .wrapper .card p {

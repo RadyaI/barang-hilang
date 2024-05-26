@@ -59,7 +59,7 @@ export default {
     const state = reactive({
       title: 'BARANG HILANG',
       showNavbarPopup: false,
-      showCaraKerja: true,
+      showCaraKerja: false,
       closeCaraKerja: false,
     })
 
@@ -295,6 +295,11 @@ export default {
   .cara-kerja .wrapper .card {
     min-width: 80%;
     height: 80%;
+  }
+
+  .element{
+    margin-bottom: -50px;
+    margin-right: -80px;
   }
 }
 </style>

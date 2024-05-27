@@ -15,7 +15,7 @@
         </nav>
 
 
-        <div class="navbar-modal animate__animated animate__bounceIn" :class="{ 'animate__fadeOut': state.closeModal }"
+        <div class="navbar-modal animate__animated animate__fadeIn" :class="{ 'animate__fadeOut': state.closeModal }"
             v-if="state.showNavbarPopup">
             <div class="navbar-body">
                 <div class="navbar-close"><i @click="closeModal" class="fa-solid fa-x"></i></div>

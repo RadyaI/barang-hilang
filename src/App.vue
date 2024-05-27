@@ -19,7 +19,21 @@
   overflow: hidden;
 }
 
-a{
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--text-color);
+  border: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--secondary-color);
+}
+
+a {
   text-decoration: none;
 }
 </style>

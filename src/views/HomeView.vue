@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="element"></div>
+    <div class="element" :style="{ top: state.mousey + 'px', left: state.mousex + 'px' }"></div>
 
     <div class="cara-kerja animate__animated animate__fadeInDown"
       :class="{ 'animate__fadeOutDown': state.closeCaraKerja }" v-if="state.showCaraKerja">
@@ -50,13 +50,16 @@
 import navbarView from '@/components/navbar.vue'
 import 'animate.css'
 
-import { reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
 export default {
   components: {
     navbarView
   },
   setup() {
     const state = reactive({
+      mousex: 0,
+      mousey: 0,
+
       title: 'BARANG HILANG',
       showNavbarPopup: false,
       showCaraKerja: false,
@@ -80,11 +83,23 @@ export default {
       }, 1100);
     }
 
+    const getCursor = (event) => {
+      setTimeout(() => {
+        state.mousex = event.clientX
+        state.mousey = event.clientY
+      }, 100);
+    }
+
+    onMounted(() => {
+      document.addEventListener("mousemove", getCursor)
+    })
+
     return {
       state,
       getNavbarStatus,
       getCaraKerja,
-      closeCaraKerja
+      closeCaraKerja,
+      getCursor
     }
   }
 }
@@ -120,7 +135,7 @@ export default {
   background-image: linear-gradient(to right, var(--text-color), #efefef);
   background-clip: text;
   color: transparent;
-  cursor: crosshair;  
+  cursor: crosshair;
 }
 
 
@@ -176,9 +191,8 @@ export default {
   filter: blur(80px);
   border-radius: 50%;
   position: fixed;
-  bottom: 50px;
-  right: 150px;
   background-color: var(--text-color);
+  /* background-color: white; */
   width: 100px;
   height: 100px;
 }
@@ -279,7 +293,7 @@ export default {
     display: flex;
   }
 
-  .cara-kerja .wrapper::-webkit-scrollbar{
+  .cara-kerja .wrapper::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
@@ -298,7 +312,7 @@ export default {
     height: 80%;
   }
 
-  .element{
+  .element {
     margin-bottom: -50px;
     margin-right: -80px;
   }

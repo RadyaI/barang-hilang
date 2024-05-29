@@ -10,8 +10,10 @@
   "dependencies": {
     "@formkit/vue": "^1.6.3",
     "animate.css": "^4.1.1",
+    "bcryptjs": "^2.4.3",
     "core-js": "^3.8.3",
     "firebase": "^10.12.1",
+    "js-cookie": "^3.0.5",
     "sweetalert": "^2.1.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3"

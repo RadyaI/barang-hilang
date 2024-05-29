@@ -6,7 +6,7 @@
             </div>
             <div class="menu" v-if="state.width > 750">
                 <div class="list">Register Barang</div>
-                <div class="list">Login</div>
+                <div class="list" @click="showLogin">Login</div>
                 <div class="cara-kerja" @click="showCaraKerja">Cara Kerja?</div>
             </div>
             <div class="menu" v-else>
@@ -21,7 +21,7 @@
                 <div class="navbar-close"><i @click="closeModal" class="fa-solid fa-x"></i></div>
                 <div class="navbar-menu">
                     <div class="list">Register Barang</div>
-                    <div class="list">Login</div>
+                    <div class="list" @click="showLogin">Login</div>
                     <div class="list" @click="showCaraKerja">Cara Kerja?</div>
                 </div>
             </div>
@@ -43,6 +43,12 @@ export default {
             showNavbarPopup: false,
             closeModal: false,
         })
+
+        const showLogin = () => {
+            emit('showLogin', true)
+            console.log({ sendLoginPopup: true })
+            closeModal( )
+        }
 
         const navbarPopup = () => {
             state.showNavbarPopup = true
@@ -74,7 +80,8 @@ export default {
             state,
             navbarPopup,
             closeModal,
-            showCaraKerja
+            showCaraKerja,
+            showLogin
         }
     }
 } 

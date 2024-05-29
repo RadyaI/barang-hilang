@@ -1,6 +1,7 @@
 <template>
   <div>
-    <navbarView :getTitle="state.title" @showNavbar="getNavbarStatus" @showCaraKerja="getCaraKerja" />
+    <navbarView :getTitle="state.title" @showNavbar="getNavbarStatus" @showCaraKerja="getCaraKerja"
+      @showLogin="getLogin" />
     <div class="container">
       <div class="wrapper">
         <div class="card">
@@ -42,18 +43,20 @@
         </div>
       </div>
     </div>
-
+    <login @closeLogin="hideLogin" v-if="state.showLogin" />
   </div>
 </template>
 
 <script>
+import login from '@/components/login.vue'
 import navbarView from '@/components/navbar.vue'
 import 'animate.css'
 
 import { onBeforeMount, onMounted, reactive } from 'vue';
 export default {
   components: {
-    navbarView
+    navbarView,
+    login
   },
   setup() {
     const state = reactive({
@@ -64,15 +67,27 @@ export default {
       showNavbarPopup: false,
       showCaraKerja: false,
       closeCaraKerja: false,
+
+      showLogin: true,
     })
+
+    const getLogin = (data) => {
+      console.log(data)
+      state.showLogin = data
+    }
+
+    const hideLogin = (data) => {
+      state.showLogin = data
+    }
 
     const getNavbarStatus = (data) => {
       state.showNavbarPopup = data
-      console.log(data)
+      console.log({navbar: data})
     }
 
     const getCaraKerja = (data) => {
       state.showCaraKerja = data
+      console.log({showCaraKerja: data})
     }
 
     const closeCaraKerja = () => {
@@ -103,7 +118,9 @@ export default {
       getNavbarStatus,
       getCaraKerja,
       closeCaraKerja,
-      getCursor
+      getCursor,
+      getLogin,
+      hideLogin,
     }
   }
 }

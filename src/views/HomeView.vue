@@ -50,7 +50,7 @@
 import navbarView from '@/components/navbar.vue'
 import 'animate.css'
 
-import { onMounted, reactive } from 'vue';
+import { onBeforeMount, onMounted, reactive } from 'vue';
 export default {
   components: {
     navbarView
@@ -90,7 +90,11 @@ export default {
       }, 100);
     }
 
+    onBeforeMount(() => {
+      console.log('Ini sebelum komponen dimount')
+    })
     onMounted(() => {
+      console.log('ini saat komponen dimount')
       document.addEventListener("mousemove", getCursor)
     })
 

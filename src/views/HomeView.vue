@@ -68,7 +68,7 @@ export default {
       showCaraKerja: false,
       closeCaraKerja: false,
 
-      showLogin: true,
+      showLogin: false,
     })
 
     const getLogin = (data) => {

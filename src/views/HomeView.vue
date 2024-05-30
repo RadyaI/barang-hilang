@@ -43,11 +43,14 @@
         </div>
       </div>
     </div>
-    <login @closeLogin="hideLogin" v-if="state.showLogin" />
+    <register class="animate__animated animate__pulse" @closeRegister="hideRegister" @switchLogin="getLogin" v-if="state.showRegister" />
+    <login class="animate__animated animate__pulse" @closeLogin="hideLogin" @switchRegister="getRegister"
+      v-if="state.showLogin" />
   </div>
 </template>
 
 <script>
+import register from '@/components/register.vue'
 import login from '@/components/login.vue'
 import navbarView from '@/components/navbar.vue'
 import 'animate.css'
@@ -56,6 +59,7 @@ import { onBeforeMount, onMounted, reactive } from 'vue';
 export default {
   components: {
     navbarView,
+    register,
     login
   },
   setup() {
@@ -69,25 +73,39 @@ export default {
       closeCaraKerja: false,
 
       showLogin: false,
+      showRegister: false,
     })
 
+    
+
     const getLogin = (data) => {
-      console.log(data)
+      state.showRegister = false
       state.showLogin = data
+    }
+
+    const getRegister = (data) => {
+      state.showLogin = false
+      state.showRegister = data
     }
 
     const hideLogin = (data) => {
       state.showLogin = data
+      console.log(`home: ${data}`)
+    }
+
+    const hideRegister = (data) => {
+      state.showRegister = data
+      console.log(data)
     }
 
     const getNavbarStatus = (data) => {
       state.showNavbarPopup = data
-      console.log({navbar: data})
+      console.log({ navbar: data })
     }
 
     const getCaraKerja = (data) => {
       state.showCaraKerja = data
-      console.log({showCaraKerja: data})
+      console.log({ showCaraKerja: data })
     }
 
     const closeCaraKerja = () => {
@@ -120,7 +138,9 @@ export default {
       closeCaraKerja,
       getCursor,
       getLogin,
+      hideRegister,
       hideLogin,
+      getRegister
     }
   }
 }

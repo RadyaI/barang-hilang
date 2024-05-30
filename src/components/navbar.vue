@@ -2,10 +2,10 @@
     <div>
         <nav>
             <div class="title">
-                <div class="list">{{ state.title }}</div>
+                <div class="list"><router-link to="/">BARANG HILANG</router-link></div>
             </div>
             <div class="menu" v-if="state.width > 750">
-                <div class="list">Register Barang</div>
+                <div class="list" @click="registerBarang">Register Barang</div>
                 <div class="list" @click="showLogin">Login</div>
                 <div class="cara-kerja" @click="showCaraKerja">Cara Kerja?</div>
             </div>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import router from '@/router';
 import 'animate.css'
 import { onMounted, reactive } from 'vue';
 export default {
@@ -44,9 +45,12 @@ export default {
             closeModal: false,
         })
 
+        function registerBarang() {
+            router.push('/user/barang/register')
+        }
+
         const showLogin = () => {
             emit('showLogin', true)
-            console.log({ sendLoginPopup: true })
             closeModal( )
         }
 
@@ -81,7 +85,8 @@ export default {
             navbarPopup,
             closeModal,
             showCaraKerja,
-            showLogin
+            showLogin,
+            registerBarang
         }
     }
 } 

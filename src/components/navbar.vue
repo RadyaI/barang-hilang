@@ -6,7 +6,8 @@
             </div>
             <div class="menu" v-if="state.width > 750">
                 <div class="list" @click="registerBarang">Register Barang</div>
-                <div class="list" @click="showLogin">Login</div>
+                <div class="list" v-if="state.isLoggedIn" @click="LogOut">LogOut</div>
+                <div class="list" @click="showLogin" v-else>Login</div>
                 <div class="cara-kerja" @click="showCaraKerja">Cara Kerja?</div>
             </div>
             <div class="menu" v-else>
@@ -33,6 +34,8 @@
 <script>
 import router from '@/router';
 import 'animate.css'
+import Cookies from 'js-cookie';
+import swal from 'sweetalert';
 import { onMounted, reactive } from 'vue';
 export default {
     name: 'app',
@@ -43,15 +46,21 @@ export default {
             width: innerWidth,
             showNavbarPopup: false,
             closeModal: false,
+
+            isLoggedIn: !!Cookies.get('isLoggedIn')
         })
 
         function registerBarang() {
-            router.push('/user/barang/register')
+            if (!Cookies.get('isLoggedIn')) {
+                showLogin()
+            } else {
+                router.push('/user/barang/register')
+            }
         }
 
         const showLogin = () => {
             emit('showLogin', true)
-            closeModal( )
+            closeModal()
         }
 
         const navbarPopup = () => {
@@ -76,6 +85,22 @@ export default {
             state.width = window.innerWidth
         }
 
+        const LogOut = () => {
+            swal({
+                icon: 'warning',
+                title: 'Mau LogOut?',
+                buttons: ['Tidak', 'Iya']
+            }).then(
+                (next) => {
+                    if (next) {
+                        localStorage.clear()
+                        Cookies.remove('isLoggedIn')
+                        router.push('/')
+                    }
+                }
+            )
+        }
+
         onMounted(() => {
             window.addEventListener('resize', updateWidth)
         })
@@ -86,7 +111,8 @@ export default {
             closeModal,
             showCaraKerja,
             showLogin,
-            registerBarang
+            registerBarang,
+            LogOut
         }
     }
 } 

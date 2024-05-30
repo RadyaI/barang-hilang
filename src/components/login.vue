@@ -2,12 +2,7 @@
     <div class="wrapper">
         <div class="form-container">
 
-            <form class="form" @submit.prevent="createAcount">
-                <div class="form-group">
-                    <label for="email">Nama Kamu</label>
-                    <input v-model="state.loginForm.nama" required="" name="email" id="email" type="text"
-                        autocomplete="off">
-                </div>
+            <form class="form" @submit.prevent="login">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input v-model="state.loginForm.email" required="" name="email" id="email" type="text"
@@ -36,6 +31,11 @@
 </template>
 
 <script>
+import { db } from '@/firebase';
+import router from '@/router';
+import bcrypt from 'bcryptjs/dist/bcrypt';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import Cookies from 'js-cookie';
 import { reactive } from 'vue'
 
 export default {
@@ -49,6 +49,51 @@ export default {
             passwordCheck: null
         })
 
+        async function login() {
+            state.emailCheck = null
+            state.passwordCheck = null
+            state.loginButtonSumbit = "Wait..."
+            const checkEmail = await getDocs(query(
+                collection(db, 'user'),
+                where('email', '==', state.loginForm.email)
+            ))
+            console.log(checkEmail)
+
+
+            let { emailStatus, passwordStatus } = ''
+
+            if (checkEmail.empty) {
+                state.emailCheck = 'Email Salah'
+                console.log('Email salah')
+                state.loginButtonSumbit = "Login"
+            } else if (!checkEmail.empty) {
+                emailStatus = true
+                state.loginButtonSumbit = "Login"
+                let user = ''
+                checkEmail.forEach((data) => {
+                    user = data.data()
+                })
+                bcrypt.compare(state.loginForm.password, user.password, function (err, res) {
+                    console.log({ passwordResult: res })
+                    if (res === false) {
+                        state.passwordCheck = "Password Salah"
+                    } else {
+                        passwordStatus = true
+                    }
+
+                    if (emailStatus && passwordStatus) {
+                        const userData = {
+                            nama_user: user.nama_user,
+                            email: user.email
+                        }
+                        localStorage.setItem('loginData', JSON.stringify(userData))
+                        console.log(userData)
+                        Cookies.set('isLoggedIn', true, { expires: 7 })
+                        router.push('/user/barang/register')
+                    }
+                })
+            }
+        }
         const switchRegister = () => {
             emit('switchRegister', true)
         }
@@ -61,11 +106,14 @@ export default {
         return {
             state,
             switchRegister,
-            closeLogin
+            closeLogin,
+            login,
         }
-
     }
 }
+
+
+
 </script>
 
 <style scoped>

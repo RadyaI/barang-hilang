@@ -15,7 +15,8 @@
       </div>
     </div>
 
-    <div class="element" :style="{ top: state.mousey + 'px', left: state.mousex + 'px' }"></div>
+    <div class="element" :style="{ top: state.mousey + 'px', left: state.mousex + 'px' }" v-if="state.width > 700">
+    </div>
 
     <div class="cara-kerja animate__animated animate__fadeInDown"
       :class="{ 'animate__fadeOutDown': state.closeCaraKerja }" v-if="state.showCaraKerja">
@@ -43,7 +44,8 @@
         </div>
       </div>
     </div>
-    <register class="animate__animated animate__pulse" @closeRegister="hideRegister" @switchLogin="getLogin" v-if="state.showRegister" />
+    <register class="animate__animated animate__pulse" @closeRegister="hideRegister" @switchLogin="getLogin"
+      v-if="state.showRegister" />
     <login class="animate__animated animate__pulse" @closeLogin="hideLogin" @switchRegister="getRegister"
       v-if="state.showLogin" />
   </div>
@@ -64,6 +66,7 @@ export default {
   },
   setup() {
     const state = reactive({
+      width: window.innerWidth,
       mousex: 0,
       mousey: 0,
 
@@ -76,7 +79,7 @@ export default {
       showRegister: false,
     })
 
-    
+
 
     const getLogin = (data) => {
       state.showRegister = false
@@ -128,6 +131,7 @@ export default {
     })
     onMounted(() => {
       console.log('ini saat komponen dimount')
+      console.log({ lebar: state.width })
       document.addEventListener("mousemove", getCursor)
     })
 
@@ -353,9 +357,5 @@ export default {
     height: 80%;
   }
 
-  .element {
-    margin-bottom: -50px;
-    margin-right: -80px;
-  }
 }
-</style>
+  </style>

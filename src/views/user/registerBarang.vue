@@ -3,7 +3,7 @@
         <navbar :currentDisplay="state.currentDisplay" />
         <div class="container">
             <div class="home">
-                <button class="home-btn"><router-link to="/">Home</router-link></button>
+                <router-link to="/"><button class="home-btn">Home</button></router-link>
             </div>
             <div class="wrapper-text">
                 <h2>Barang kamu hilang?</h2>
@@ -112,10 +112,11 @@ export default {
 }
 
 @media only screen and (max-width:700px) {
-    .home{
+    .home {
         margin-left: 18px;
     }
-    .wrapper-text{
+
+    .wrapper-text {
         width: 80%;
     }
 }

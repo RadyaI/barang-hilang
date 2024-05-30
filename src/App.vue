@@ -16,7 +16,6 @@
   margin: 0;
   padding: 0;
   font-family: "Poppins";
-  overflow-x: hidden;
 }
 
 *::-webkit-scrollbar {

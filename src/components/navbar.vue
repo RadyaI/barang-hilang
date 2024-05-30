@@ -22,7 +22,8 @@
             <div class="navbar-body">
                 <div class="navbar-close"><i @click="closeModal" class="fa-solid fa-x"></i></div>
                 <div class="navbar-menu">
-                    <div class="list">Register Barang</div>
+                    <div class="list" @click="registerBarang"
+                        :class="{ selected: state.currentDisplay == 'registerBarang' }">Register Barang</div>
                     <div class="list" v-if="state.isLoggedIn" @click="LogOut">LogOut</div>
                     <div class="list" @click="showLogin" v-else>Login</div>
                     <div class="list" @click="showCaraKerja">Cara Kerja?</div>
@@ -41,7 +42,7 @@ import swal from 'sweetalert';
 import { onMounted, reactive } from 'vue';
 export default {
     name: 'app',
-    props: ['getTitle','currentDisplay'],
+    props: ['getTitle', 'currentDisplay'],
     setup(props, { emit }) {
         const state = reactive({
             currentDisplay: props.currentDisplay,
@@ -125,8 +126,8 @@ export default {
 
 <style scoped>
 nav {
+    overflow-x: hidden;
     width: 100%;
-    border: 1px solid black;
     background-color: var(--primary-color);
     color: var(--text-color-second);
     padding: 15px 0;
@@ -148,6 +149,7 @@ nav .title {
 
 nav .title .list {
     transition: color 0.2s;
+
 }
 
 nav .title .list:hover {

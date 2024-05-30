@@ -61,10 +61,10 @@ export default {
 
 .home {
     /* border: 1px solid white; */
+    /* margin-top: 20px; */
     width: 93.3%;
     height: 50px;
     margin: 0 auto;
-    margin-top: 10px;
     padding: 20px 0px;
 }
 

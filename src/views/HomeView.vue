@@ -152,11 +152,12 @@ export default {
 
 <style scoped>
 .container {
+  /* border: 1px solid white; */
   width: 100%;
   height: 100vh;
   background-color: var(--primary-color);
   color: var(--text-color-second);
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -359,4 +360,4 @@ export default {
   }
 
 }
-  </style>
+</style>

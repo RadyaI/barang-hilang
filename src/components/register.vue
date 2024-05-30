@@ -183,7 +183,8 @@ export default {
 
 .form-container .form-group input {
     width: 100%;
-    padding: 12px 16px;
+    padding: 12px 0;
+    padding-left: 5px;
     border-radius: 8px;
     color: #fff;
     font-family: inherit;

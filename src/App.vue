@@ -7,7 +7,7 @@
 
 :root {
   --primary-color: #1a1a1a;
-  --secondary-color: #2f2f2f;
+  --secondary-color: #212121;
   --text-color: #42b883;
   --text-color-second: #e1e1e1;
 }
@@ -16,7 +16,7 @@
   margin: 0;
   padding: 0;
   font-family: "Poppins";
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 *::-webkit-scrollbar {

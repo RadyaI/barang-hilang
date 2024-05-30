@@ -5,7 +5,8 @@
                 <div class="list"><router-link to="/">BARANG HILANG</router-link></div>
             </div>
             <div class="menu" v-if="state.width > 750">
-                <div class="list" @click="registerBarang">Register Barang</div>
+                <div class="list" @click="registerBarang"
+                    :class="{ selected: state.currentDisplay == 'registerBarang' }">Register Barang</div>
                 <div class="list" v-if="state.isLoggedIn" @click="LogOut">LogOut</div>
                 <div class="list" @click="showLogin" v-else>Login</div>
                 <div class="cara-kerja" @click="showCaraKerja">Cara Kerja?</div>
@@ -22,7 +23,8 @@
                 <div class="navbar-close"><i @click="closeModal" class="fa-solid fa-x"></i></div>
                 <div class="navbar-menu">
                     <div class="list">Register Barang</div>
-                    <div class="list" @click="showLogin">Login</div>
+                    <div class="list" v-if="state.isLoggedIn" @click="LogOut">LogOut</div>
+                    <div class="list" @click="showLogin" v-else>Login</div>
                     <div class="list" @click="showCaraKerja">Cara Kerja?</div>
                 </div>
             </div>
@@ -39,9 +41,11 @@ import swal from 'sweetalert';
 import { onMounted, reactive } from 'vue';
 export default {
     name: 'app',
-    props: ['getTitle'],
+    props: ['getTitle','currentDisplay'],
     setup(props, { emit }) {
         const state = reactive({
+            currentDisplay: props.currentDisplay,
+
             title: props.getTitle,
             width: innerWidth,
             showNavbarPopup: false,
@@ -51,6 +55,7 @@ export default {
         })
 
         function registerBarang() {
+            state.currentDisplay = "registerBarang"
             if (!Cookies.get('isLoggedIn')) {
                 showLogin()
             } else {
@@ -260,5 +265,9 @@ nav .menu .list:hover {
     nav .menu {
         margin-right: 0px;
     }
+}
+
+.selected {
+    color: var(--text-color);
 }
 </style>

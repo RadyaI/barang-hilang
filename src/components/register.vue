@@ -46,6 +46,7 @@ import { addDoc, collection, getDocs, query, where, doc, getDoc } from 'firebase
 // eslint-disable-next-line
 import Cookies from 'js-cookie';
 import 'animate.css'
+import router from '@/router';
 
 export default {
     name: 'app',
@@ -90,6 +91,7 @@ export default {
                         state.registerButtonSubmit = "Success!"
                         setTimeout(() => {
                             state.registerButtonSubmit = "Register"
+                            router.push('/user/barang/register')
                             state.registerForm = {}
                         }, 1200);
                     }, 2000);

@@ -155,7 +155,8 @@ export default {
   width: 100%;
   height: 100vh;
   background-color: var(--primary-color);
-  color: var(--text-color-second)
+  color: var(--text-color-second);
+  overflow-y: hidden;
 }
 
 .wrapper {

@@ -11,12 +11,12 @@
                         Atau dimanapun
                         itu?.</b> <br>Yuk coba laporkan barang kamu yang hilang di sini! kamu hanya perlu mengisi form
                     di bawah ini dengan mengisi: <br><br>
-                <ol>
-                    <li>- Deskripsi Barang</li>
-                    <li>- Waktu Hilang</li>
-                    <li>- Tempat Terakhir</li>
-                    <li>- Foto Barang (Opsional)</li>
-                </ol>
+                <ul>
+                    <li> Deskripsi Barang</li>
+                    <li> Waktu Hilang</li>
+                    <li> Tempat Terakhir</li>
+                    <li> Foto Barang (Opsional)</li>
+                </ul>
                 </p>
             </div>
         </div>
@@ -110,6 +110,10 @@ export default {
 .wrapper-text h2 {
     margin-bottom: 10px;
 }
+.wrapper-text ul {
+    margin-left: 15px;
+}
+
 
 @media only screen and (max-width:700px) {
     .home {

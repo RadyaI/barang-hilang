@@ -101,7 +101,7 @@ export default {
                     if (next) {
                         localStorage.clear()
                         Cookies.remove('isLoggedIn')
-                        router.push('/')
+                        location.reload()
                     }
                 }
             )

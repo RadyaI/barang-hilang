@@ -91,6 +91,7 @@ export default {
             state.width = window.innerWidth
         }
 
+
         const LogOut = () => {
             swal({
                 icon: 'warning',
